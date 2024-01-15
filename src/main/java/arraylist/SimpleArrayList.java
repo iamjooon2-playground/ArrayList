@@ -25,6 +25,16 @@ public class SimpleArrayList implements SimpleList {
         return true;
     }
 
+    private String[] resize() {
+        String[] temp = elements;
+        capacity *= 2;
+        elements = new String[capacity];
+        for (int i = 0; i < capacity; i++) {
+            elements[i] = temp[i];
+        }
+        return elements;
+    }
+
     @Override
     public void add(int index, String value) {
         validateIndexRange(index);
@@ -110,12 +120,10 @@ public class SimpleArrayList implements SimpleList {
     public String remove(int index) {
         validateIndexRange(index);
         String target = elements[index];
-
         for (int i = index; i < endIndex; i++) {
             elements[i] = elements[i + 1];
         }
         endIndex--;
-
         return target;
     }
 
@@ -124,15 +132,5 @@ public class SimpleArrayList implements SimpleList {
         elements = new String[CAPACITY_DEFAULT_SIZE];
         endIndex = 0;
         capacity = CAPACITY_DEFAULT_SIZE;
-    }
-
-    private String[] resize() {
-        String[] temp = elements;
-        capacity *= 2;
-        elements = new String[capacity];
-        for (int i = 0; i < capacity; i++) {
-            elements[i] = temp[i];
-        }
-        return elements;
     }
 }
