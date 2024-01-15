@@ -1,0 +1,11 @@
+
+¥
+java:S3577"ˆRename class "ListStudy" to match the regular expression: '^((Test|IT)[a-zA-Z0-9_]+|[A-Z][a-zA-Z0-9_]*(Test|Tests|TestCase|IT|ITCase))$'(İıÏv8ÕéÚàĞ1
+:
+java:S5786"Remove this 'public' modifier.(İıÏv8ÚéÚàĞ1
+S
+java:S5838"1Use assertThat(actual).hasSize(expected) instead.(¥•ˆËıÿÿÿÿ8êéÚàĞ1
+O
+java:S5838"2Use assertThat(actual).contains(expected) instead.(¼´‘8êéÚàĞ1
+S
+java:S5838"1Use assertThat(actual).hasSize(expected) instead.(ÚÊ²‹şÿÿÿÿ8ëéÚàĞ1
