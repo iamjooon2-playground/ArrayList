@@ -1,22 +1,29 @@
-package arraylist;
+package list;
 
 
-public class SimpleArrayList implements SimpleList {
+public class SimpleArrayList<T> implements SimpleList<T> {
 
     static final int CAPACITY_DEFAULT_SIZE = 10;
 
-    private String[] elements;
+    private T[] elements;
     private int capacity;
     private int endIndex;
 
     public SimpleArrayList() {
-        elements = new String[CAPACITY_DEFAULT_SIZE];
+        elements = (T[]) new Object[CAPACITY_DEFAULT_SIZE];
         capacity = CAPACITY_DEFAULT_SIZE;
         endIndex = 0;
     }
 
+    public SimpleArrayList(T... values) {
+        this();
+        for (T value : values) {
+            this.add(value);
+        }
+    }
+
     @Override
-    public boolean add(String value) {
+    public boolean add(T value) {
         if (elements.length < endIndex + 1) {
             elements = resize();
         }
@@ -25,10 +32,10 @@ public class SimpleArrayList implements SimpleList {
         return true;
     }
 
-    private String[] resize() {
-        String[] temp = elements;
+    private T[] resize() {
+        T[] temp = elements;
         capacity *= 2;
-        elements = new String[capacity];
+        elements = (T[]) new Object[capacity];
         for (int i = 0; i < capacity; i++) {
             elements[i] = temp[i];
         }
@@ -36,7 +43,7 @@ public class SimpleArrayList implements SimpleList {
     }
 
     @Override
-    public void add(int index, String value) {
+    public void add(int index, T value) {
         validateIndexRange(index);
         if (elements.length < endIndex + 1) {
             elements = resize();
@@ -49,15 +56,15 @@ public class SimpleArrayList implements SimpleList {
     }
 
     @Override
-    public String set(int index, String value) {
+    public T set(int index, T value) {
         validateIndexRange(index);
-        String before = elements[index];
+        Object before = elements[index];
         elements[index] = value;
-        return before;
+        return (T) before;
     }
 
     @Override
-    public String get(int index) {
+    public T get(int index) {
         validateIndexRange(index);
         return elements[index];
     }
@@ -69,8 +76,8 @@ public class SimpleArrayList implements SimpleList {
     }
 
     @Override
-    public boolean contains(String value) {
-        for (String element : elements) {
+    public boolean contains(T value) {
+        for (Object element : elements) {
             if (element.equals(value)) {
                 return true;
             }
@@ -79,7 +86,7 @@ public class SimpleArrayList implements SimpleList {
     }
 
     @Override
-    public int indexOf(String value) {
+    public int indexOf(T value) {
         for (int i = 0; i <= endIndex; i++) {
             if (elements[i].equals(value)) {
                 return i;
@@ -99,7 +106,7 @@ public class SimpleArrayList implements SimpleList {
     }
 
     @Override
-    public boolean remove(String value) {
+    public boolean remove(T value) {
         int target = -1;
         for (int i = 0; i < endIndex; i++) {
             if (value.equals(elements[i])) {
@@ -117,19 +124,19 @@ public class SimpleArrayList implements SimpleList {
     }
 
     @Override
-    public String remove(int index) {
+    public T remove(int index) {
         validateIndexRange(index);
-        String target = elements[index];
+        Object target = elements[index];
         for (int i = index; i < endIndex; i++) {
             elements[i] = elements[i + 1];
         }
         endIndex--;
-        return target;
+        return (T) target;
     }
 
     @Override
     public void clear() {
-        elements = new String[CAPACITY_DEFAULT_SIZE];
+        elements = (T[]) new Object[CAPACITY_DEFAULT_SIZE];
         endIndex = 0;
         capacity = CAPACITY_DEFAULT_SIZE;
     }

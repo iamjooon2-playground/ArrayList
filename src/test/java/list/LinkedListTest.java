@@ -1,8 +1,8 @@
+package list;
+
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
-import arraylist.SimpleLinkedList;
-import arraylist.SimpleList;
 import org.junit.jupiter.api.Test;
 
 class LinkedListTest {

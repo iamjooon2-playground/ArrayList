@@ -1,7 +1,7 @@
+package list;
+
 import static org.assertj.core.api.Assertions.assertThat;
 
-import arraylist.SimpleArrayList;
-import arraylist.SimpleList;
 import org.junit.jupiter.api.Test;
 
 class ArrayListTest {

@@ -1,6 +1,6 @@
-package arraylist;
+package list;
 
-public class SimpleLinkedList implements SimpleList {
+public class SimpleLinkedList<T> implements SimpleList<T> {
 
     private Node head;
     private int size;
@@ -10,21 +10,21 @@ public class SimpleLinkedList implements SimpleList {
         size = 0;
     }
 
-    static class Node {
+    class Node {
 
-        private String value;
+        private T value;
         private Node next;
 
         public Node() {
         }
 
-        public Node(String value) {
+        public Node(T value) {
             this.value = value;
         }
     }
 
     @Override
-    public boolean add(String value) {
+    public boolean add(T value) {
         Node node = head;
         while (node.next != null) {
             node = node.next;
@@ -36,7 +36,7 @@ public class SimpleLinkedList implements SimpleList {
     }
 
     @Override
-    public void add(int index, String value) {
+    public void add(int index, T value) {
         validateIndexRange(index);
 
         Node before = getBeforeNodeBy(index);
@@ -64,11 +64,11 @@ public class SimpleLinkedList implements SimpleList {
     }
 
     @Override
-    public String set(int index, String value) {
+    public T set(int index, T value) {
         validateIndexRange(index);
 
         Node now = getNodeBy(index);
-        String beforeValue = now.value;
+        T beforeValue = now.value;
 
         now.value = value;
         return beforeValue;
@@ -83,7 +83,7 @@ public class SimpleLinkedList implements SimpleList {
     }
 
     @Override
-    public String get(int index) {
+    public T get(int index) {
         validateIndexRange(index);
 
         Node now = getNodeBy(index);
@@ -91,7 +91,7 @@ public class SimpleLinkedList implements SimpleList {
     }
 
     @Override
-    public boolean contains(String value) {
+    public boolean contains(T value) {
         Node node = head;
         while (node.next != null) {
             node = node.next;
@@ -102,8 +102,9 @@ public class SimpleLinkedList implements SimpleList {
         return false;
     }
 
+
     @Override
-    public int indexOf(String value) {
+    public int indexOf(T value) {
         Node node = head;
         for (int i = 0; i < size; i++) {
             node = node.next;
@@ -125,7 +126,7 @@ public class SimpleLinkedList implements SimpleList {
     }
 
     @Override
-    public boolean remove(String value) {
+    public boolean remove(T value) {
         Node node = head;
         while (node.next != null) {
             if (value.equals(node.next.value)) {
@@ -139,11 +140,11 @@ public class SimpleLinkedList implements SimpleList {
     }
 
     @Override
-    public String remove(int index) {
+    public T remove(int index) {
         validateIndexRange(index);
 
         Node node = getBeforeNodeBy(index);
-        String target = node.next.value;
+        T target = node.next.value;
         node.next = node.next.next;
 
         size--;
